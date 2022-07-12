@@ -18,6 +18,8 @@ class OrderRepositoryPlugin
 
     public const delivery_timeslot = 'delivery_timeslot';
 
+    public const delivery_comment = 'delivery_comment';
+
     /**
      * Order Extension Attributes Factory
      *
@@ -46,10 +48,12 @@ class OrderRepositoryPlugin
     {
         $delivery_date = $order->getData(self::delivery_date);
         $delivery_timeslot = $order->getData(self::delivery_timeslot);
+        $delivery_comment = $order->getData(self::delivery_comment);
         $extensionAttributes = $order->getExtensionAttributes();
         $extensionAttributes = $extensionAttributes ?: $this->extensionFactory->create();
         $extensionAttributes->setDeliveryDate($delivery_date);
         $extensionAttributes->setDeliveryTimeslot($delivery_timeslot);
+        $extensionAttributes->setDeliveryTimeslot($delivery_comment);
         $order->setExtensionAttributes($extensionAttributes);
 
         return $order;
@@ -71,10 +75,12 @@ class OrderRepositoryPlugin
         foreach ($orders as &$order) {
             $delivery_date = $order->getData(self::delivery_date);
             $delivery_timeslot = $order->getData(self::delivery_timeslot);
+            $delivery_comment = $order->getData(self::delivery_comment);
             $extensionAttributes = $order->getExtensionAttributes();
             $extensionAttributes = $extensionAttributes ?: $this->extensionFactory->create();
             $extensionAttributes->setDeliveryDate($delivery_date);
             $extensionAttributes->setDeliveryTimeslot($delivery_timeslot);
+            $extensionAttributes->setDeliveryTimeslot($delivery_comment);
             $order->setExtensionAttributes($extensionAttributes);
         }
 
